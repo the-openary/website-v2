@@ -8,7 +8,7 @@ await import("./src/env.js");
 const config = {
     env: {},
     output: "export",
-    compress: true
+    compress: true,
 };
 
 export default config;
