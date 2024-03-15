@@ -1,6 +1,11 @@
 import "@mantine/core/styles.css";
 import "~/styles/globals.css";
-import { createTheme, MantineProvider, ColorSchemeScript, MantineColorScheme } from "@mantine/core";
+import {
+    createTheme,
+    MantineProvider,
+    ColorSchemeScript,
+    MantineColorScheme,
+} from "@mantine/core";
 
 export const metadata = {
     title: "The Openary",
@@ -15,11 +20,14 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const defaultColorScheme: MantineColorScheme = "light"
+    const defaultColorScheme: MantineColorScheme = "dark";
     return (
         <html lang="en">
             <body>
-                <MantineProvider theme={theme} defaultColorScheme={defaultColorScheme}>
+                <MantineProvider
+                    theme={theme}
+                    defaultColorScheme={defaultColorScheme}
+                >
                     <ColorSchemeScript
                         // Required for SSR color scheme. Ensures no FOUC.
                         nonce="8IBTHwOdqNKAWeKl7plt8g=="

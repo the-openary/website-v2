@@ -11,4 +11,5 @@ export default {
         },
     },
     plugins: [],
+    darkMode: ["selector", '[data-mantine-color-scheme="dark"]'],
 } satisfies Config;
