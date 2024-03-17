@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#contents + ul {
+    @apply ml-4;
+    ul {
+        @apply ml-4;
+        ul {
+            @apply ml-4;
+            ul {
+                @apply ml-4;
+                ul {
+                    @apply ml-4;
+                    ul {
+                        @apply ml-4;
+                    }
+                }
+            }
+        }
+    }
+}
