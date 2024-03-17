@@ -4,6 +4,7 @@
  */
 await import("./src/env.js");
 import remarkToc from "remark-toc";
+import rehypeSlug from "rehype-slug";
 import withMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
@@ -15,5 +16,5 @@ const config = {
 };
 
 export default withMDX({
-    options: { remarkPlugins: [remarkToc], rehypePlugins: [] },
+    options: { remarkPlugins: [remarkToc], rehypePlugins: [rehypeSlug] },
 })(config);
