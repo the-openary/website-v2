@@ -1,5 +1,7 @@
 const config = {
     plugins: {
+        "postcss-nesting": {},
+        "tailwindcss/nesting": {},
         tailwindcss: {},
     },
 };
