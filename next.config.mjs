@@ -3,7 +3,9 @@
  * for Docker builds.
  */
 await import("./src/env.js");
+import remarkToc from "remark-toc";
 import withMDX from "@next/mdx";
+
 /** @type {import("next").NextConfig} */
 const config = {
     env: {},
@@ -12,4 +14,6 @@ const config = {
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-export default withMDX()(config);
+export default withMDX({
+    options: { remarkPlugins: [remarkToc], rehypePlugins: [] },
+})(config);
