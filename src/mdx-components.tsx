@@ -73,6 +73,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         code: (props) => (
             <Code
+                block
                 {...(props as CodeProps)}
                 className="whitespace-pre-wrap"
             ></Code>
