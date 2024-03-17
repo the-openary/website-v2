@@ -13,6 +13,11 @@ import Link from "next/link";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: (props) => <Title order={1} {...(props as TitleProps)}></Title>,
+        h2: (props) => <Title order={2} {...(props as TitleProps)}></Title>,
+        h3: (props) => <Title order={3} {...(props as TitleProps)}></Title>,
+        h4: (props) => <Title order={4} {...(props as TitleProps)}></Title>,
+        h5: (props) => <Title order={5} {...(props as TitleProps)}></Title>,
+        h6: (props) => <Title order={6} {...(props as TitleProps)}></Title>,
         a: (props) => (
             <Anchor
                 href={props.href as string}
