@@ -32,11 +32,6 @@ const config = {
         }
         return config;
     },
-    // experimental: {
-    //     outputFileTracingIncludes: {
-    //         src: ["./src/**/*"],
-    //     },
-    // },
 };
 
 export default withMDX({
