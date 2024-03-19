@@ -17,13 +17,11 @@ const config = {
     compress: true,
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
     webpack(config, { isServer }) {
-        if (!isServer) {
-            config.plugins.push(
-                new CopyPlugin({
-                    patterns: [{ from: "src/", to: "src/" }],
-                }),
-            );
-        }
+        config.plugins.push(
+            new CopyPlugin({
+                patterns: [{ from: "src/", to: "src/" }],
+            }),
+        );
 
         return config;
     },
