@@ -71,7 +71,7 @@ export default async function ProjectLayout({
     const pathname = new URL(header_url).pathname;
     const file_path = `${process.cwd()}/.next/static/src/app${pathname}/page.mdx`;
     if (!fs.existsSync(file_path)) {
-        notFound();
+        return fs.readdirSync(file_path);
     }
     const file = fs.readFileSync(file_path, "utf-8");
 
