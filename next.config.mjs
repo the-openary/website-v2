@@ -18,11 +18,13 @@ const config = {
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
     webpack(config, { isServer }) {
         config.plugins.push(
-            new CopyPlugin({
-                patterns: [{ from: "src/", to: "src/" }],
-            }),
+            new CopyWebpackPlugin([
+                {
+                    from: path.join(__dirname, "src/"),
+                    to: path.join(__dirname, "/static/src/"),
+                },
+            ]),
         );
-
         return config;
     },
     experimental: {
