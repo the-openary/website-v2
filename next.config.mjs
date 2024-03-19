@@ -24,8 +24,7 @@ const config = {
                     patterns: [
                         {
                             from: path.join("src/"),
-                            to: path.join("/tmp/src/"),
-
+                            to: "/tmp",
                         },
                     ],
                 }),
