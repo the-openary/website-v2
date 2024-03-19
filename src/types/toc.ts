@@ -7,3 +7,7 @@ export interface TocItem {
 export interface TocRoot {
     children?: TocItem[];
 }
+
+export interface FlattenedTocItem extends TocItem {
+    depth: number;
+}
