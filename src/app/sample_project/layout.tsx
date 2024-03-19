@@ -1,5 +1,9 @@
 import { ProjectOutline } from "~/types/project_outline";
 import ProjectShell from "../_components/project/shell";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import fs from "fs";
+import { getTableOfContents } from "~/lib/toc";
 
 const outline: ProjectOutline = [
     {
@@ -53,10 +57,27 @@ const outline: ProjectOutline = [
     { name: "More", link: "/sample_project/more", subsections: [] },
 ];
 
-export default function ProjectLayout({
+export default async function ProjectLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    return <ProjectShell outline={outline}>{children}</ProjectShell>;
+    const header_list = headers();
+    const header_url = header_list.get("x-url");
+    if (!header_url) {
+        notFound();
+    }
+    const pathname = new URL(header_url).pathname;
+    const file_path = `${process.cwd()}/src/app${pathname}/page.mdx`;
+    if (!fs.existsSync(file_path)) {
+        notFound();
+    }
+
+    const file = fs.readFileSync(file_path, "utf-8");
+
+    return (
+        <ProjectShell outline={outline} toc={await getTableOfContents(file)}>
+            {children}
+        </ProjectShell>
+    );
 }

@@ -5,7 +5,10 @@ import {
     MantineProvider,
     ColorSchemeScript,
     MantineColorScheme,
+    Container,
 } from "@mantine/core";
+import Header from "./_components/header/header";
+import ScreenSizeIndicator from "./_components/utils/ssi";
 
 export const metadata = {
     title: "The Openary",
@@ -23,7 +26,7 @@ export default function RootLayout({
     const defaultColorScheme: MantineColorScheme = "dark";
     return (
         <html lang="en">
-            <body>
+            <body className="">
                 <MantineProvider
                     theme={theme}
                     defaultColorScheme={defaultColorScheme}
@@ -33,7 +36,9 @@ export default function RootLayout({
                         nonce="8IBTHwOdqNKAWeKl7plt8g=="
                         defaultColorScheme={defaultColorScheme}
                     />
-                    {children}
+                    <ScreenSizeIndicator />
+                    <Header />
+                    <Container fluid>{children}</Container>
                 </MantineProvider>
             </body>
         </html>
