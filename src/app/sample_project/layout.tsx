@@ -68,9 +68,9 @@ export default async function ProjectLayout({
         notFound();
     }
     const pathname = new URL(header_url).pathname;
-    const file_path = `${process.cwd()}/src/app${pathname}/page.mdx`;
+    const file_path = `${process.cwd()}/.next/src/app${pathname}/page.mdx`;
     if (!fs.existsSync(file_path)) {
-        return fs.readdirSync(`${process.cwd()}/.next`).join(", ");
+        return fs.readdirSync(`${process.cwd()}`).join(", ");
     }
     const file = fs.readFileSync(file_path, "utf-8");
 

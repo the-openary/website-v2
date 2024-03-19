@@ -20,7 +20,7 @@ const config = {
         if (!isServer) {
             config.plugins.push(
                 new CopyPlugin({
-                    patterns: [{ from: "./src/", to: "./src/" }],
+                    patterns: [{ from: "src/", to: "src/" }],
                 }),
             );
         }
