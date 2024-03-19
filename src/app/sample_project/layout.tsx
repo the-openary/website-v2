@@ -70,7 +70,7 @@ export default async function ProjectLayout({
     const pathname = new URL(header_url).pathname;
     const file_path = `${process.cwd()}/src/app${pathname}/page.mdx`;
     if (!fs.existsSync(file_path)) {
-        return fs.readdirSync(`${process.cwd()}`);
+        return fs.readdirSync(`${process.cwd()}/.next`).join(", ");
     }
     const file = fs.readFileSync(file_path, "utf-8");
 
