@@ -9,6 +9,29 @@ import {
 } from "@mantine/core";
 import Header from "./_components/header/header";
 import ScreenSizeIndicator from "./_components/utils/ssi";
+import { nodeFileTrace } from "@vercel/nft";
+import fs from "fs";
+
+async function traceFilesInDirectory(directoryPath: string) {
+    try {
+        // Read the directory
+        const files = fs.readdirSync(directoryPath);
+
+        // Map file names to their full paths
+        const fullFilePaths = files.map((file) => `${directoryPath}/${file}`);
+
+        // Trace the files using nodeFileTrace
+        const { fileList } = await nodeFileTrace(fullFilePaths, {
+            base: process.cwd(),
+        });
+
+        console.log(fileList);
+    } catch (error) {
+        console.error("Error tracing files:", error);
+    }
+}
+
+traceFilesInDirectory("./src");
 
 export const metadata = {
     title: "The Openary",

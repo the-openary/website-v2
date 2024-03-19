@@ -17,21 +17,21 @@ const config = {
     env: {},
     compress: true,
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-    webpack(config, { isServer }) {
-        if (!isServer) {
-            config.plugins.push(
-                new CopyPlugin({
-                    patterns: [
-                        {
-                            from: path.join("src/"),
-                            to: "/tmp",
-                        },
-                    ],
-                }),
-            );
-        }
-        return config;
-    },
+    // webpack(config, { isServer }) {
+    //     if (!isServer) {
+    //         config.plugins.push(
+    //             new CopyPlugin({
+    //                 patterns: [
+    //                     {
+    //                         from: path.join("src/"),
+    //                         to: "/tmp",
+    //                     },
+    //                 ],
+    //             }),
+    //         );
+    //     }
+    //     return config;
+    // },
 };
 
 export default withMDX({
