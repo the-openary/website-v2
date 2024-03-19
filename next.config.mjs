@@ -6,19 +6,20 @@ await import("./src/env.js");
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import remarkMdx from "remark-mdx";
+import { remarkMdxToc } from "remark-mdx-toc";
 import withMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
     env: {},
-    output: "export",
     compress: true,
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
 export default withMDX({
     options: {
-        remarkPlugins: [remarkToc, remarkGfm],
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [rehypeSlug],
     },
 })(config);
