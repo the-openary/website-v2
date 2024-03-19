@@ -9,13 +9,11 @@ import {
 } from "@mantine/core";
 import Header from "./_components/header/header";
 import ScreenSizeIndicator from "./_components/utils/ssi";
-
 export const metadata = {
     title: "The Openary",
     description: "The Openary",
     icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
-
 const theme = createTheme({});
 
 export default function RootLayout({

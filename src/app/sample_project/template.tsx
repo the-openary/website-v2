@@ -3,6 +3,7 @@ import ProjectShell from "../_components/project/shell";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { getTableOfContents } from "~/lib/toc";
+import { resolve_filepath } from "~/lib/util";
 
 const outline: ProjectOutline = [
     {
@@ -42,18 +43,14 @@ export default async function ProjectTemplate({
 }: {
     children: React.ReactNode;
 }) {
-    const header_list = headers();
-    const header_url = header_list.get("x-url");
-    if (!header_url) {
-        notFound();
+    const mdx_path = resolve_filepath(headers());
+    if (!mdx_path) {
+        return notFound();
     }
-    const pathname = new URL(header_url).pathname;
-    const file_path = `${process.cwd()}/src/app${pathname}/page.mdx`;
-
     return (
         <ProjectShell
             outline={outline}
-            toc={await getTableOfContents(file_path)}
+            toc={await getTableOfContents(mdx_path)}
         >
             {children}
         </ProjectShell>
