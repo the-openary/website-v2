@@ -16,16 +16,21 @@ const config = {
     env: {},
     compress: true,
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-    webpack(config, { isServer }) {
-        if (!isServer) {
-            config.plugins.push(
-                new CopyPlugin({
-                    patterns: [{ from: "src/", to: "src/" }],
-                }),
-            );
-        }
+    // webpack(config, { isServer }) {
+    //     if (!isServer) {
+    //         config.plugins.push(
+    //             new CopyPlugin({
+    //                 patterns: [{ from: "src/", to: "src/" }],
+    //             }),
+    //         );
+    //     }
 
-        return config;
+    //     return config;
+    // },
+    experimental: {
+        outputFileTracingIncludes: {
+            "./src": ["./src/**/*"],
+        },
     },
 };
 
