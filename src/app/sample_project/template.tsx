@@ -2,7 +2,6 @@ import { ProjectOutline } from "~/types/project_outline";
 import ProjectShell from "../_components/project/shell";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import fs from "fs";
 import { getTableOfContents } from "~/lib/toc";
 
 const outline: ProjectOutline = [
@@ -22,39 +21,20 @@ const outline: ProjectOutline = [
                     {
                         name: "Extras",
                         link: "/sample_project/building/materials/extras",
-                        subsections: [
-                            {
-                                name: "this page doesnt exist",
-                                link: "/noexist..",
-                                subsections: [],
-                            },
-                            {
-                                name: "this page doesnt exist 2!!",
-                                link: "/noexist2...",
-                                subsections: [],
-                            },
-                            {
-                                name: "wow!",
-                                link: "/wow!",
-                                subsections: [],
-                            },
-                        ],
                     },
                     {
                         name: "Extras1",
                         link: "/sample_project/building/materials/extras1",
-                        subsections: [],
                     },
                     {
                         name: "Extras2",
                         link: "/sample_project/building/materials/extras2",
-                        subsections: [],
                     },
                 ],
             },
         ],
     },
-    { name: "More", link: "/sample_project/more", subsections: [] },
+    { name: "More", link: "/sample_project/more" },
 ];
 
 export default async function ProjectTemplate({
