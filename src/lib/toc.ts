@@ -9,6 +9,7 @@ import { toc } from "mdast-util-toc";
 import { remark } from "remark";
 import { visit } from "unist-util-visit";
 import { TocRoot } from "~/types/toc";
+import fs from "fs";
 const textTypes = ["text", "emphasis", "strong", "inlineCode"];
 
 function flattenNode(node: Nodes): string {
@@ -69,9 +70,21 @@ const getToc = () => (node: Nodes, file: VFile) => {
 
 export type TableOfContents = TocRoot;
 
-export async function getTableOfContents(
-    content: string,
-): Promise<TableOfContents> {
-    const result = await remark().use(getToc).process(content);
-    return result.data;
+interface Cache {
+    [key: string]: TocRoot;
 }
+
+function getTableOfContents_memo() {
+    const cache: Cache = {};
+
+    return async function (fpath: string) {
+        if (fpath in cache) {
+            return cache[fpath] as TocRoot;
+        }
+        const content = fs.readFileSync(fpath, "utf-8");
+        const result = await remark().use(getToc).process(content);
+        cache[fpath] = result.data as TocRoot;
+        return cache[fpath] as TocRoot;
+    };
+}
+export const getTableOfContents = getTableOfContents_memo();
