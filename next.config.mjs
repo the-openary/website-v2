@@ -23,10 +23,7 @@ const config = {
                 new CopyPlugin({
                     patterns: [
                         {
-                            from: path.join(
-                                "/home/arya/workspace/website-v2",
-                                "src/",
-                            ),
+                            from: path.join("src/"),
                             to: path.join("static/src/"),
                         },
                     ],
