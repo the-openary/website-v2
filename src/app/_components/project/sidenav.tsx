@@ -7,9 +7,7 @@ export default function SideNav({ outline }: { outline: ProjectOutline }) {
             <h2>Sections</h2>
             {outline.map((item, index) => (
                 <div key={index}>
-                    <Anchor component={Link} href={item.link}>
-                        {item.name}
-                    </Anchor>
+                    <Anchor href={item.link}>{item.name}</Anchor>
                     {map_to_anchor(item, 1)}
                 </div>
             ))}
@@ -19,12 +17,10 @@ export default function SideNav({ outline }: { outline: ProjectOutline }) {
 function map_to_anchor(outline_item: ProjectOutlineItem, depth: number) {
     return (
         <ul>
-            {outline_item.subsections.map((subItem, index) => (
+            {outline_item.subsections?.map((subItem, index) => (
                 <li key={index} style={{ textIndent: `${depth * 20}px` }}>
-                    <Anchor component={Link} href={subItem.link}>
-                        {subItem.name}
-                    </Anchor>
-                    {subItem.subsections.length > 0 &&
+                    <Anchor href={subItem.link}>{subItem.name}</Anchor>
+                    {(subItem.subsections?.length || 0) > 0 &&
                         map_to_anchor(subItem, depth + 1)}
                 </li>
             ))}
