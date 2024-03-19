@@ -81,7 +81,7 @@ function readFilesRecursively(
 }
 
 readFilesRecursively(`${process.cwd()}/.next/src`, (path) => {
-    console.log(path);
+    const fb = fs.readFileSync(path, "utf-8");
 });
 
 export default async function ProjectLayout({
