@@ -10,6 +10,7 @@ import remarkMdx from "remark-mdx";
 import { remarkMdxToc } from "remark-mdx-toc";
 import withMDX from "@next/mdx";
 import CopyPlugin from "copy-webpack-plugin";
+import path from "path";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -18,10 +19,10 @@ const config = {
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
     webpack(config, { isServer }) {
         config.plugins.push(
-            new CopyWebpackPlugin([
+            new CopyPlugin([
                 {
-                    from: path.join(__dirname, "src/"),
-                    to: path.join(__dirname, "/static/src/"),
+                    from: path.join(process.cwd(), "src/"),
+                    to: path.join(process.cwd(), "/static/src/"),
                 },
             ]),
         );
