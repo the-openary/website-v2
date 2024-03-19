@@ -2,7 +2,6 @@ import { ProjectOutline } from "~/types/project_outline";
 import ProjectShell from "../_components/project/shell";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import fs from "fs";
 import { getTableOfContents } from "~/lib/toc";
 
 const outline: ProjectOutline = [
@@ -22,42 +21,23 @@ const outline: ProjectOutline = [
                     {
                         name: "Extras",
                         link: "/sample_project/building/materials/extras",
-                        subsections: [
-                            {
-                                name: "this page doesnt exist",
-                                link: "/noexist..",
-                                subsections: [],
-                            },
-                            {
-                                name: "this page doesnt exist 2!!",
-                                link: "/noexist2...",
-                                subsections: [],
-                            },
-                            {
-                                name: "wow!",
-                                link: "/wow!",
-                                subsections: [],
-                            },
-                        ],
                     },
                     {
                         name: "Extras1",
                         link: "/sample_project/building/materials/extras1",
-                        subsections: [],
                     },
                     {
                         name: "Extras2",
                         link: "/sample_project/building/materials/extras2",
-                        subsections: [],
                     },
                 ],
             },
         ],
     },
-    { name: "More", link: "/sample_project/more", subsections: [] },
+    { name: "More", link: "/sample_project/more" },
 ];
 
-export default async function ProjectLayout({
+export default async function ProjectTemplate({
     children,
 }: {
     children: React.ReactNode;
@@ -68,14 +48,13 @@ export default async function ProjectLayout({
         notFound();
     }
     const pathname = new URL(header_url).pathname;
-    const file_path = `${process.cwd()}/.next/src/app${pathname}/page.mdx`;
-    if (!fs.existsSync(file_path)) {
-        return fs.readdirSync(`${process.cwd()}`).join(", ");
-    }
-    const file = fs.readFileSync(file_path, "utf-8");
+    const file_path = `${process.cwd()}/src/app${pathname}/page.mdx`;
 
     return (
-        <ProjectShell outline={outline} toc={await getTableOfContents(file)}>
+        <ProjectShell
+            outline={outline}
+            toc={await getTableOfContents(file_path)}
+        >
             {children}
         </ProjectShell>
     );

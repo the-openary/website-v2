@@ -1,6 +1,6 @@
 export type ProjectOutlineItem = {
     name: string;
     link: string;
-    subsections: ProjectOutlineItem[];
+    subsections?: ProjectOutlineItem[];
 };
 export type ProjectOutline = ProjectOutlineItem[];
