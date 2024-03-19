@@ -18,21 +18,28 @@ const config = {
     compress: true,
     pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
     webpack(config, { isServer }) {
-        config.plugins.push(
-            new CopyPlugin([
-                {
-                    from: path.join(process.cwd(), "src/"),
-                    to: path.join(process.cwd(), "/static/src/"),
-                },
-            ]),
-        );
+        if (!isServer) {
+            config.plugins.push(
+                new CopyPlugin({
+                    patterns: [
+                        {
+                            from: path.join(
+                                "/home/arya/workspace/website-v2",
+                                "src/",
+                            ),
+                            to: path.join("static/src/"),
+                        },
+                    ],
+                }),
+            );
+        }
         return config;
     },
-    experimental: {
-        outputFileTracingIncludes: {
-            src: ["./src/**/*"],
-        },
-    },
+    // experimental: {
+    //     outputFileTracingIncludes: {
+    //         src: ["./src/**/*"],
+    //     },
+    // },
 };
 
 export default withMDX({

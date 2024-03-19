@@ -58,32 +58,6 @@ const outline: ProjectOutline = [
     { name: "More", link: "/sample_project/more", subsections: [] },
 ];
 
-function readFilesRecursively(
-    dirPath: string,
-    callback: (path: string) => void,
-) {
-    fs.readdir(dirPath, (err, items) => {
-        if (err) throw err;
-
-        items.forEach((item) => {
-            const fullPath = path.join(dirPath, item);
-            fs.stat(fullPath, (err, stats) => {
-                if (err) throw err;
-
-                if (stats.isFile()) {
-                    callback(fullPath); // Do something with the file
-                } else if (stats.isDirectory()) {
-                    readFilesRecursively(fullPath, callback);
-                }
-            });
-        });
-    });
-}
-
-readFilesRecursively(`${process.cwd()}/.next/src`, (path) => {
-    const fb = fs.readFileSync(path, "utf-8");
-});
-
 export default async function ProjectLayout({
     children,
 }: {

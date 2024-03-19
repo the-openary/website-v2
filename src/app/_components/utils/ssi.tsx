@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { default as twConfig } from "../../../../tailwind.config";
+import { default as twConfig } from "~/../tailwind.config";
 const screens = Object.fromEntries(
     Object.entries(twConfig.theme.screens).map(([k, v]) => [
         k,
