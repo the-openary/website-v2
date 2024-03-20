@@ -79,11 +79,14 @@ function getTableOfContents_memo() {
 
     return async function (fpath: string) {
         if (fpath in cache) {
+            console.log(cache[fpath]);
             return cache[fpath] as TocRoot;
         }
         const content = fs.readFileSync(fpath, "utf-8");
         const result = await remark().use(getToc).process(content);
         cache[fpath] = result.data as TocRoot;
+
+        console.log(cache[fpath]);
         return cache[fpath] as TocRoot;
     };
 }
