@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import React from 'react';
+import React from "react";
 import { Anchor, Title } from "@mantine/core";
 import { TocRoot, TocItem, FlattenedTocItem } from "~/types/toc";
 import { useDebouncedState, useIntersection } from "@mantine/hooks";
 import { useEffect } from "react";
 function TableOfContents({ toc }: { toc: TocRoot }) {
-    const [activeUrl, setActiveUrl] = useDebouncedState<string | null>(null, 100);
+    const [activeUrl, setActiveUrl] = useDebouncedState<string | null>(
+        null,
+        100,
+    );
     const flattened = flattenToc(toc);
     const observers = flattened.map((item) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
