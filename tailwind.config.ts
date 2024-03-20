@@ -17,6 +17,15 @@ export default {
             "2xl": "1536px",
         },
     },
+    safelist: [
+        "indent-[0rem]",
+        "indent-[1rem]",
+        "indent-[2rem]",
+        "indent-[3rem]",
+        "indent-[4rem]",
+        "indent-[5rem]",
+        "indent-[6rem]",
+    ],
     plugins: [],
     darkMode: ["selector", '[data-mantine-color-scheme="dark"]'],
 } satisfies Config;
