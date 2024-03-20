@@ -1,2 +1,2 @@
 *.mdx linguist-vendored
-*.css
+*.css linguist-vendored
